@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Index of Ancient Greek Lexica</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script type="text/javascript" src="src/js/lexica.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div style="text-align: center">
+        <h1>Index of Ancient Greek Lexica</h1>
+        <h3><small>Search for headwords in Hesychius, Photios, Harpokration, LSJ, the Suda, and the Lexica Segueriana</small></h3>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-md-3"> </div>
+        <div class="ui-widget col-md-6">
+          <input id="search" class="form-control" placeholder="Enter a Greek search term" />
+        </div>
+        <div class="col-md-3"> </div>
+      </div>
+      <br />
+      <div id="results">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Dictionary</th>
+              <th>Exact Match</th>
+              <th>Closest Matching Headword</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hesychius</td>
+              <td id="hesychius-match"></td>
+              <td id="hesychius-string"></td>
+            </tr>
+            <tr>
+              <td>Suda</td>
+              <td id="suda-match"></td>
+              <td id="suda-string"></td>
+            </tr>
+            <tr>
+              <td>Photios</td>
+              <td id="photios-match"></td>
+              <td id="photios-string"></td>
+            </tr>
+            <tr>
+              <td>Harpokration</td>
+              <td id="harpokration-match"></td>
+              <td id="harpokration-string"></td>
+            </tr>
+            <tr>
+              <td>Lexica Segueriana</td>
+              <td id="lexseg-match"></td>
+              <td id="lexseg-string"></td>
+            </tr>
+             <tr>
+              <td>LSJ</td>
+              <td id="lsj-match"></td>
+              <td id="lsj-string"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
