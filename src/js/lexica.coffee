@@ -19,7 +19,7 @@ generate_link = (dictionary, entry, ref) ->
 search_dictionary = (dictionary, value) ->
   normalized_value = normalize(value)
   require ['./vendor/fast-levenshtein/levenshtein'], (levenshtein) ->
-    $.ajax "/data/#{dictionary}-headwords.csv",
+    $.ajax "data/#{dictionary}-headwords.csv",
       type: 'GET'
       dataType: 'text'
       cache: true
