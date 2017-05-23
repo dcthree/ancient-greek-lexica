@@ -64,7 +64,7 @@ clear_results = ->
 
 search_for = (value) ->
   $('#search_status').empty()
-  $('#search_status').append($('<p>').text("Searching for: #{value}"))
+  $('#search_status').append($('<p>').text("Searching for: #{value} - ").append(generate_link('logeion',value,value).text("search for #{value} in Logeion")))
   clear_results()
   for dictionary in DICTIONARIES
     console.log("AJAX: #{dictionary}")
