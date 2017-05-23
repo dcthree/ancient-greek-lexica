@@ -6,6 +6,16 @@ DICTIONARIES = ['hesychius','suda','photios','harpokration','lexseg','lsj']
 normalize = (input) ->
   input.normalize().toLowerCase().trim().replace(/[<>†*";.]/g,'')
 
+generate_link = (dictionary, entry, ref) ->
+  url = switch dictionary
+    when 'lsj' then "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0057:entry=#{ref}"
+    when 'harpokration' then "https://dcthree.github.io/harpokration/#urn_cts_greekLit_tlg1389_tlg001_dc3_#{ref}"
+    when 'photios' then "https://dcthree.github.io/photios/#urn_cts_greekLit_tlg4040_lexicon_dc3_#{ref}"
+    when 'suda' then "http://www.stoa.org/sol-entries/#{ref}"
+    when 'lexseg' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4289&wid=005&q=LEXICA%20SEGUERIANA&ct=~x%22#{ref}&l=40&td=greek"
+    when 'hesychius' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4085&wid=002&q=HESYCHIUS&ct=~x%22#{ref}&rt=y&l=40&td=greek"
+  $('<a>').attr('href',url).attr('target','_blank').text(entry)
+
 search_dictionary = (dictionary, value) ->
   normalized_value = normalize(value)
   require ['./vendor/fast-levenshtein/levenshtein'], (levenshtein) ->
@@ -19,23 +29,31 @@ search_dictionary = (dictionary, value) ->
         console.log("#{dictionary} fetched")
         match_found = false
         match_text = ''
+        match_ref = ''
         min_distance = normalized_value.length * 2
         for entry in data.split(/\r?\n/)
-          normalized_entry = normalize(entry)
+          fields = entry.split(',')
+          ref = fields[0]
+          text = fields[1..].join(',')
+          normalized_entry = normalize(text)
           if normalized_entry == normalized_value
             console.log("Match: #{dictionary}")
             match_found = true
-            $("##{dictionary}-match").text("✔")
-            $("##{dictionary}-string").append($('<strong>').text(entry))
+            match_text = text
+            match_ref = ref
             break
           else
             distance = levenshtein.get(normalized_value, normalized_entry)
             if distance < min_distance
               min_distance = distance
-              match_text = entry
+              match_text = text
+              match_ref = ref
         console.log("#{dictionary} done")
-        unless match_found
-          $("##{dictionary}-string").text(match_text)
+        if match_found
+          $("##{dictionary}-match").text("✔")
+          $("##{dictionary}-string").append($('<strong>').append(generate_link(dictionary, match_text, match_ref)))
+        else
+          $("##{dictionary}-string").append(generate_link(dictionary, match_text, match_ref))
           $("##{dictionary}-match").text("✗")
 
 clear_results = ->
