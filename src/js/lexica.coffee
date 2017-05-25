@@ -3,6 +3,7 @@
 
 DICTIONARIES = ['hesychius','suda','photios','harpokration','lexseg','lsj','logeion']
 HEADWORDS = null
+ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
 
 $.xhrPool = []
 $.xhrPool.abortAll = ->
@@ -12,6 +13,9 @@ $.xhrPool.abortAll = ->
 
 normalize = (input) ->
   input.normalize().toLowerCase().trim().replace(/[-<>†*";.,\][_(){}&:^·\\=0-9]/g,'')
+
+strip_accents = (input) ->
+  input.normalize('NFD').replace(ACCENTS_REGEX, '')
 
 generate_link = (dictionary, entry, ref) ->
   url = switch dictionary
@@ -92,7 +96,12 @@ $(document).ready ->
       $('#search').autocomplete "option", "source", (request, response) ->
         HEADWORDS ?= data.split(/\r?\n/)
         normalized_term = normalize(request.term)
-        matches = (HEADWORDS.filter (h) -> h.startsWith(normalized_term)).sort (a,b) -> a.length - b.length
+        matches = []
+        if strip_accents(normalized_term) == normalized_term # no accents in search string, strip accents for matching
+          matches = HEADWORDS.filter (h) -> strip_accents(h).startsWith(normalized_term)
+        else # accents in search string, don't strip accents for matching
+          matches = HEADWORDS.filter (h) -> h.startsWith(normalized_term)
+        matches = matches.sort (a,b) -> a.length - b.length
         response(matches[0..20])
 
   $('#search').autocomplete
