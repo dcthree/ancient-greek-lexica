@@ -2,6 +2,18 @@
 ---
 
 DICTIONARIES = ['hesychius','suda','photios','harpokration','lexseg','lsj','logeion']
+HEADWORDS = null
+
+$.xhrPool = []
+$.xhrPool.abortAll = ->
+  $(this).each (i, jqXHR) ->
+    jqXHR.abort()
+    $.xhrPool.splice(i, 1)
+$.ajaxSetup
+  beforeSend: (jqXHR) -> $.xhrPool.push(jqXHR)
+  complete: (jqXHR) ->
+    i = $.xhrPool.indexOf(jqXHR)
+    $.xhrPool.splice(i, 1) if (i > -1)
 
 normalize = (input) ->
   input.normalize().toLowerCase().trim().replace(/[<>†*";.]/g,'')
@@ -63,6 +75,7 @@ clear_results = ->
     $("##{dictionary}-string").empty()
 
 search_for = (value) ->
+  $.xhrPool.abortAll()
   $('#search_status').empty()
   $('#search_status').append($('<p>').text("Searching for: #{value} - ").append(generate_link('logeion',value,value).text("search for #{value} in Logeion")))
   clear_results()
@@ -72,9 +85,25 @@ search_for = (value) ->
 
 $(document).ready ->
   console.log('ready')
-  $('#search').autocomplete
-    delay: 600
-    minLength: 1
-    source: []
-    search: (event, ui) ->
-      search_for($('#search').val())
+  $.ajax 'data/all_headwords_unique.csv',
+    type: 'GET'
+    dataType: 'text'
+    cache: true
+    error: (jqXHR, textStatus, errorThrown) ->
+      console.log "AJAX Error: #{textStatus}"
+    success: (data) ->
+      console.log("headwords fetched")
+      $('#search').prop('disabled',false)
+      $('#search').autocomplete
+        delay: 600
+        minLength: 1
+        source: (request, response) ->
+          HEADWORDS ?= data.split(/\r?\n/)
+          normalized_term = normalize(request.term)
+          matches = HEADWORDS.filter (h) -> h.startsWith(normalized_term)
+          response(matches[0..20])
+        select: (event, ui) ->
+          console.log(ui)
+          search_for(ui.item.value)
+        search: (event, ui) ->
+          search_for($('#search').val())
