@@ -11,7 +11,7 @@ $.xhrPool.abortAll = ->
     $.xhrPool.splice(i, 1)
 
 normalize = (input) ->
-  input.normalize().toLowerCase().trim().replace(/[<>†*";.]/g,'')
+  input.normalize().toLowerCase().trim().replace(/[-<>†*";.,\][_(){}&:^·\\=0-9]/g,'')
 
 generate_link = (dictionary, entry, ref) ->
   url = switch dictionary
