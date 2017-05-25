@@ -9,11 +9,6 @@ $.xhrPool.abortAll = ->
   $(this).each (i, jqXHR) ->
     jqXHR.abort()
     $.xhrPool.splice(i, 1)
-$.ajaxSetup
-  beforeSend: (jqXHR) -> $.xhrPool.push(jqXHR)
-  complete: (jqXHR) ->
-    i = $.xhrPool.indexOf(jqXHR)
-    $.xhrPool.splice(i, 1) if (i > -1)
 
 normalize = (input) ->
   input.normalize().toLowerCase().trim().replace(/[<>†*";.]/g,'')
@@ -85,6 +80,7 @@ search_for = (value) ->
 
 $(document).ready ->
   console.log('ready')
+  
   $.ajax 'data/all_headwords_unique.csv',
     type: 'GET'
     dataType: 'text'
@@ -93,17 +89,24 @@ $(document).ready ->
       console.log "AJAX Error: #{textStatus}"
     success: (data) ->
       console.log("headwords fetched")
-      $('#search').prop('disabled',false)
-      $('#search').autocomplete
-        delay: 600
-        minLength: 1
-        source: (request, response) ->
-          HEADWORDS ?= data.split(/\r?\n/)
-          normalized_term = normalize(request.term)
-          matches = HEADWORDS.filter (h) -> h.startsWith(normalized_term)
-          response(matches[0..20])
-        select: (event, ui) ->
-          console.log(ui)
-          search_for(ui.item.value)
-        search: (event, ui) ->
-          search_for($('#search').val())
+      $('#search').autocomplete "option", "source", (request, response) ->
+        HEADWORDS ?= data.split(/\r?\n/)
+        normalized_term = normalize(request.term)
+        matches = (HEADWORDS.filter (h) -> h.startsWith(normalized_term)).sort (a,b) -> a.length - b.length
+        response(matches[0..20])
+
+  $('#search').autocomplete
+    delay: 600
+    minLength: 1
+    source: []
+    select: (event, ui) ->
+      console.log(ui)
+      search_for(ui.item.value)
+    search: (event, ui) ->
+      search_for($('#search').val())
+
+  $.ajaxSetup
+    beforeSend: (jqXHR) -> $.xhrPool.push(jqXHR)
+    complete: (jqXHR) ->
+      i = $.xhrPool.indexOf(jqXHR)
+      $.xhrPool.splice(i, 1) if (i > -1)
