@@ -28,79 +28,79 @@ generate_link = (dictionary, entry, ref) ->
     when 'logeion' then "http://logeion.uchicago.edu/index.html##{entry}"
   $('<a>').attr('href',url).attr('target','_blank').text(entry)
 
-search_dictionary = (dictionary, value) ->
-  normalized_value = normalize(value)
-  require ['./vendor/fast-levenshtein/levenshtein'], (levenshtein) ->
-    $.ajax "data/#{dictionary}-headwords.csv",
-      type: 'GET'
-      dataType: 'text'
-      cache: true
-      error: (jqXHR, textStatus, errorThrown) ->
-        console.log "AJAX Error: #{textStatus}"
-      success: (data) ->
-        console.log("#{dictionary} fetched")
-        match_found = false
-        match_text = ''
-        match_ref = ''
-        min_distance = normalized_value.length * 2
-        for entry in data.split(/\r?\n/)
-          fields = entry.split(',')
-          ref = fields[0]
-          text = fields[1..].join(',')
-          normalized_entry = normalize(text)
-          if normalized_entry == normalized_value
-            console.log("Match: #{dictionary}")
-            match_found = true
-            match_text = text
-            match_ref = ref
-            break
-          else
-            distance = levenshtein.get(normalized_value, normalized_entry)
-            if distance < min_distance
-              min_distance = distance
-              match_text = text
-              match_ref = ref
-        console.log("#{dictionary} done")
-        if match_found
-          $("##{dictionary}-match").text("✔")
-          $("##{dictionary}-string").append($('<strong>').append(generate_link(dictionary, match_text, match_ref)))
-        else
-          $("##{dictionary}-string").append(generate_link(dictionary, match_text, match_ref))
-          $("##{dictionary}-match").text("✗")
-
 clear_results = ->
   for dictionary in DICTIONARIES
     $("##{dictionary}-match").empty()
     $("##{dictionary}-string").empty()
+
+# assumes the headword index has already been loaded into HEADWORDS
+search_dictionaries_for_value = (value) ->
+  normalized_value = normalize(value)
+  require ['./vendor/fast-levenshtein/levenshtein'], (levenshtein) ->
+    for dictionary in DICTIONARIES
+      match_found = false
+      match_text = ''
+      match_ref = ''
+      min_distance = normalized_value.length * 2
+      for headword,refs of HEADWORDS
+        if refs[dictionary]?
+          if (headword == normalized_value)
+            console.log("Match: #{dictionary}")
+            match_found = true
+            match_text = headword
+            match_ref = refs[dictionary]
+            break
+          else
+            distance = levenshtein.get(normalized_value, headword)
+            if distance < min_distance
+              min_distance = distance
+              match_text = headword
+              match_ref = refs[dictionary]
+      console.log("#{dictionary} done")
+      if match_found
+        $("##{dictionary}-match").text("✔")
+        $("##{dictionary}-string").append($('<strong>').append(generate_link(dictionary, match_text, match_ref)))
+      else
+        $("##{dictionary}-match").text("✗")
+        $("##{dictionary}-string").append(generate_link(dictionary, match_text, match_ref))
 
 search_for = (value) ->
   $.xhrPool.abortAll()
   $('#search_status').empty()
   $('#search_status').append($('<p>').text("Searching for: #{value} - ").append(generate_link('logeion',value,value).text("search for #{value} in Logeion")))
   clear_results()
-  for dictionary in DICTIONARIES
-    console.log("AJAX: #{dictionary}")
-    search_dictionary(dictionary, value)
+  if HEADWORDS?
+    search_dictionaries_for_value(value)
+  else
+    $.ajax "data/headwords.json",
+      type: 'GET'
+      dataType: 'json'
+      cache: true
+      error: (jqXHR, textStatus, errorThrown) ->
+        console.log "AJAX Error: #{textStatus}"
+      success: (data) ->
+        HEADWORDS ?= data
+        search_dictionaries_for_value(value)
 
 $(document).ready ->
   console.log('ready')
   
-  $.ajax 'data/all_headwords_unique.csv',
+  $.ajax 'data/headwords.json',
     type: 'GET'
-    dataType: 'text'
+    dataType: 'json'
     cache: true
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "AJAX Error: #{textStatus}"
     success: (data) ->
       console.log("headwords fetched")
       $('#search').autocomplete "option", "source", (request, response) ->
-        HEADWORDS ?= data.split(/\r?\n/)
+        HEADWORDS ?= data
         normalized_term = normalize(request.term)
         matches = []
         if strip_accents(normalized_term) == normalized_term # no accents in search string, strip accents for matching
-          matches = HEADWORDS.filter (h) -> strip_accents(h).startsWith(normalized_term)
+          matches = Object.keys(HEADWORDS).filter (h) -> strip_accents(h).startsWith(normalized_term)
         else # accents in search string, don't strip accents for matching
-          matches = HEADWORDS.filter (h) -> h.startsWith(normalized_term)
+          matches = Object.keys(HEADWORDS).filter (h) -> h.startsWith(normalized_term)
         matches = matches.sort (a,b) -> a.length - b.length
         response(matches[0..20])
 
