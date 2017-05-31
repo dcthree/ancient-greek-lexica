@@ -1,7 +1,7 @@
 ---
 ---
 
-DICTIONARIES = ['hesychius','suda','photios','harpokration','lexseg','lsj','logeion','zonaras']
+DICTIONARIES = ['hesychius','suda','photios','harpokration','synagoge','synagogeb','lsj','logeion','zonaras']
 HEADWORDS = null
 ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
 
@@ -23,8 +23,9 @@ generate_link = (dictionary, entry, ref) ->
     when 'harpokration' then "https://dcthree.github.io/harpokration/#urn_cts_greekLit_tlg1389_tlg001_dc3_#{ref}"
     when 'photios' then "https://dcthree.github.io/photios/#urn_cts_greekLit_tlg4040_lexicon_dc3_#{ref}"
     when 'suda' then "http://www.stoa.org/sol-entries/#{ref}"
-    when 'lexseg' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4289&wid=005&q=LEXICA%20SEGUERIANA&ct=~x%22#{ref}&l=40&td=greek"
     when 'zonaras' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=3136&wid=001&q=Pseudo-ZONARAS&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
+    when 'synagoge' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4160&wid=001&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
+    when 'synagogeb' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4160&wid=002&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
     when 'hesychius' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4085&wid=002&q=HESYCHIUS&ct=~x%22#{ref}%22z1&rt=y&l=40&td=greek"
     when 'logeion' then "http://logeion.uchicago.edu/index.html##{entry}"
   $('<a>').attr('href',url).attr('target','_blank').text(entry)
