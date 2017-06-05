@@ -1,7 +1,7 @@
 ---
 ---
 
-DICTIONARIES = ['hesychius','suda','photios','harpokration','synagoge','synagogeb','lsj','logeion','zonaras']
+DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','harpokration','synagoge','synagogeb','lsj','logeion','zonaras']
 HEADWORDS = null
 ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
 
