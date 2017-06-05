@@ -1,7 +1,7 @@
 ---
 ---
 
-DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','harpokration','synagoge','synagogeb','lsj','logeion','zonaras']
+DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','synagoge','synagogeb','lsj','logeion','zonaras']
 HEADWORDS = null
 ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
 
@@ -27,6 +27,8 @@ generate_link = (dictionary, entry, ref) ->
     when 'synagoge' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4160&wid=001&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
     when 'synagogeb' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4160&wid=002&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
     when 'hesychius' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4085&wid=002&q=HESYCHIUS&ct=~x%22#{ref}%22z1&rt=y&l=40&td=greek"
+    when 'phrynichus-ecloga' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=1608&wid=002&q=PHRYNICHUS&ct=~y%22#{ref}%22z1&rt=y&l=40&td=greek"
+    when 'phrynichus-praeparatio' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=1608&wid=001&q=PHRYNICHUS&ct=~y#{ref}&l=40&td=greek"
     when 'aeliusdionysius' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=1323&wid=001&q=Aelius%20DIONYSIUS&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
     when 'logeion' then "http://logeion.uchicago.edu/index.html##{entry}"
   $('<a>').attr('href',url).attr('target','_blank').text(entry)
