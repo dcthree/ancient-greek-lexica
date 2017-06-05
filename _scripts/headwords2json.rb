@@ -5,7 +5,7 @@ require 'i18n'
 require 'json'
 
 def normalize(input)
-  input.unicode_normalize(:nfc).downcase.strip.gsub(/[-<>†*";.,\]\[_(){}&:^·\\=0-9]/,'')
+  input.unicode_normalize(:nfc).downcase.strip.gsub(/[-<>⸤⸥†*";.,\]\[_(){}&:^·\\=0-9]/,'')
 end
 
 headwords = {}
