@@ -17,20 +17,23 @@ normalize = (input) ->
 strip_accents = (input) ->
   input.normalize('NFD').replace(ACCENTS_REGEX, '')
 
+tlg_subscription = ->
+  $('#tlg_dropdown').val()
+
 generate_link = (dictionary, entry, ref) ->
   url = switch dictionary
     when 'lsj' then "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0057:entry=#{ref}"
     when 'harpokration' then "https://dcthree.github.io/harpokration/#urn_cts_greekLit_tlg1389_tlg001_dc3_#{ref}"
     when 'photios' then "https://dcthree.github.io/photios/#urn_cts_greekLit_tlg4040_lexicon_dc3_#{ref}"
     when 'suda' then "http://www.stoa.org/sol-entries/#{ref}"
-    when 'zonaras' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=3136&wid=001&q=Pseudo-ZONARAS&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
-    when 'synagoge' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4160&wid=001&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
-    when 'synagogeb' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4160&wid=002&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
-    when 'hesychius' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4085&#{ref}%22z1&rt=y&l=40&td=greek"
-    when 'phrynichus-ecloga' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=1608&wid=002&q=PHRYNICHUS&ct=~y%22#{ref}%22z1&rt=y&l=40&td=greek"
-    when 'phrynichus-praeparatio' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=1608&wid=001&q=PHRYNICHUS&ct=~y#{ref}&l=40&td=greek"
-    when 'aeliusdionysius' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=1323&wid=001&q=Aelius%20DIONYSIUS&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
-    when 'haimodein' then "http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=4288&wid=002&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
+    when 'zonaras' then "http://stephanus.tlg.uci.edu/Iris/#{tlg_subscription()}/browser.jsp#doc=tlg&aid=3136&wid=001&q=Pseudo-ZONARAS&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
+    when 'synagoge' then "http://stephanus.tlg.uci.edu/Iris/#{tlg_subscription()}/browser.jsp#doc=tlg&aid=4160&wid=001&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
+    when 'synagogeb' then "http://stephanus.tlg.uci.edu/Iris/#{tlg_subscription()}/browser.jsp#doc=tlg&aid=4160&wid=002&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
+    when 'hesychius' then "http://stephanus.tlg.uci.edu/Iris/#{tlg_subscription()}/browser.jsp#doc=tlg&aid=4085&#{ref}%22z1&rt=y&l=40&td=greek"
+    when 'phrynichus-ecloga' then "http://stephanus.tlg.uci.edu/Iris/#{tlg_subscription()}/browser.jsp#doc=tlg&aid=1608&wid=002&q=PHRYNICHUS&ct=~y%22#{ref}%22z1&rt=y&l=40&td=greek"
+    when 'phrynichus-praeparatio' then "http://stephanus.tlg.uci.edu/Iris/#{tlg_subscription()}/browser.jsp#doc=tlg&aid=1608&wid=001&q=PHRYNICHUS&ct=~y#{ref}&l=40&td=greek"
+    when 'aeliusdionysius' then "http://stephanus.tlg.uci.edu/Iris/#{tlg_subscription()}/browser.jsp#doc=tlg&aid=1323&wid=001&q=Aelius%20DIONYSIUS&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
+    when 'haimodein' then "http://stephanus.tlg.uci.edu/Iris/#{tlg_subscription()}/browser.jsp#doc=tlg&aid=4288&wid=002&ct=~x%22#{ref}z1&rt=y&l=40&td=greek"
     when 'logeion' then "http://logeion.uchicago.edu/index.html##{entry}"
   $('<a>').attr('href',url).attr('target','_blank').text(entry)
 
@@ -109,6 +112,9 @@ $(document).ready ->
           matches = Object.keys(HEADWORDS).filter (h) -> h.startsWith(normalized_term)
         matches = matches.sort (a,b) -> a.length - b.length
         response(matches[0..20])
+
+  $('#tlg_dropdown').change ->
+    search_for($('#search').val())
 
   $('#search').autocomplete
     delay: 600
