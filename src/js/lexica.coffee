@@ -73,15 +73,14 @@ search_dictionaries_for_value = (value) ->
       console.log("#{dictionary} done")
       if match_found
         $("##{dictionary}-match").text("✔")
-        $("##{dictionary}-string").append($('<strong>').append(generate_link(dictionary, match_text, match_ref)))
+        $("##{dictionary}-string").empty().append($('<strong>').append(generate_link(dictionary, match_text, match_ref)))
       else
         $("##{dictionary}-match").text("✗")
-        $("##{dictionary}-string").append(generate_link(dictionary, match_text, match_ref))
+        $("##{dictionary}-string").empty().append(generate_link(dictionary, match_text, match_ref))
 
 search_for = (value) ->
   $.xhrPool.abortAll()
-  $('#search_status').empty()
-  $('#search_status').append($('<p>').text("Searching for: #{value} - ").append(generate_link('logeion',value,value).text("search for #{value} in Logeion")))
+  $('#search_status').empty().append($('<p>').text("Searching for: #{value} - ").append(generate_link('logeion',value,value).text("search for #{value} in Logeion")))
   clear_results()
   if HEADWORDS?
     search_dictionaries_for_value(value)
