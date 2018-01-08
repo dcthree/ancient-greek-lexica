@@ -40,6 +40,7 @@ generate_link = (dictionary, entry, ref) ->
     when 'aeliusdionysius' then "#{tlg_prefix()}&aid=1323&wid=001&q=Aelius%20DIONYSIUS&ct=~x%22#{ref}#{tlg_postfix}"
     when 'haimodein' then "#{tlg_prefix()}&aid=4288&wid=002&ct=~x%22#{ref}#{tlg_postfix}"
     when 'logeion' then "http://logeion.uchicago.edu/index.html##{entry}"
+    when 'morph' then "http://www.perseus.tufts.edu/hopper/morph?l=#{entry}&la=greek"
   $('<a>').attr('href',url).attr('target','_blank').text(entry)
 
 clear_results = ->
@@ -80,7 +81,7 @@ search_dictionaries_for_value = (value) ->
 
 search_for = (value) ->
   $.xhrPool.abortAll()
-  $('#search_status').empty().append($('<p>').text("Searching for: #{value} - ").append(generate_link('logeion',value,value).text("search for #{value} in Logeion")))
+  $('#search_status').empty().append($('<p>').text("Searching for: #{value} - ").append(generate_link('logeion',value,value).text("search for #{value} in Logeion")).append($('<span>').text(', ')).append(generate_link('morph',value,value).text("search for #{value} in the Perseus Greek Word Study Tool")))
   clear_results()
   if HEADWORDS?
     search_dictionaries_for_value(value)
