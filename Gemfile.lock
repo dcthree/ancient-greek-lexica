@@ -239,6 +239,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   i18n
+  nokogiri
   rack-jekyll
 
 BUNDLED WITH
