@@ -1,7 +1,7 @@
 ---
 ---
 
-DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','synagoge','synagogeb','lsj','logeion','zonaras','haimodein']
+DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','synagoge','synagogeb','lsj','logeion','zonaras','haimodein','wip']
 HEADWORDS = null
 ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
 
@@ -41,6 +41,7 @@ generate_link = (dictionary, entry, ref) ->
     when 'haimodein' then "#{tlg_prefix()}&aid=4288&wid=002&ct=~x%22#{ref}#{tlg_postfix}"
     when 'logeion' then "http://logeion.uchicago.edu/index.html##{entry}"
     when 'morph' then "http://www.perseus.tufts.edu/hopper/morph?l=#{entry}&la=greek"
+    when 'wip' then "http://www.aristarchus.unige.net/Wordsinprogress/it-it/Database/View/#{ref}"
   $('<a>').attr('href',url).attr('target','_blank').text(entry)
 
 clear_results = ->
