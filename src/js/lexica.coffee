@@ -53,33 +53,28 @@ clear_results = ->
 # assumes the headword index has already been loaded into HEADWORDS
 search_dictionaries_for_value = (value) ->
   normalized_value = normalize(value)
+  exact_matches = HEADWORDS[normalized_value]
+  matching_dictionaries = Object.keys(exact_matches)
+  remaining_dictionaries = $(DICTIONARIES).not(matching_dictionaries).get()
+  for dictionary,match_ref of exact_matches
+    $("##{dictionary}-match").text("✔")
+    $("##{dictionary}-string").empty().append($('<strong>').append(generate_link(dictionary, normalized_value, match_ref)))
+    console.log("#{dictionary} done")
   require ['./vendor/fast-levenshtein/levenshtein'], (levenshtein) ->
-    for dictionary in DICTIONARIES
-      match_found = false
+    for dictionary in remaining_dictionaries
       match_text = ''
       match_ref = ''
       min_distance = normalized_value.length * 2
       for headword,refs of HEADWORDS
         if refs[dictionary]?
-          if (headword == normalized_value)
-            console.log("Match: #{dictionary}")
-            match_found = true
+          distance = levenshtein.get(normalized_value, headword)
+          if distance < min_distance
+            min_distance = distance
             match_text = headword
             match_ref = refs[dictionary]
-            break
-          else
-            distance = levenshtein.get(normalized_value, headword)
-            if distance < min_distance
-              min_distance = distance
-              match_text = headword
-              match_ref = refs[dictionary]
+      $("##{dictionary}-match").text("✗")
+      $("##{dictionary}-string").empty().append(generate_link(dictionary, match_text, match_ref))
       console.log("#{dictionary} done")
-      if match_found
-        $("##{dictionary}-match").text("✔")
-        $("##{dictionary}-string").empty().append($('<strong>').append(generate_link(dictionary, match_text, match_ref)))
-      else
-        $("##{dictionary}-match").text("✗")
-        $("##{dictionary}-string").empty().append(generate_link(dictionary, match_text, match_ref))
 
 search_for = (value) ->
   $.xhrPool.abortAll()
