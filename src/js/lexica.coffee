@@ -54,14 +54,17 @@ clear_results = ->
 search_dictionaries_for_value = (value) ->
   normalized_value = normalize(value)
   exact_matches = HEADWORDS[normalized_value]
-  matching_dictionaries = Object.keys(exact_matches)
-  remaining_dictionaries = $(DICTIONARIES).not(matching_dictionaries).get()
-  for dictionary,match_ref of exact_matches
-    $("##{dictionary}-match").text("✔")
-    $("##{dictionary}-string").empty().append($('<strong>').append(generate_link(dictionary, normalized_value, match_ref)))
-    console.log("#{dictionary} done")
+  remaining_dictionaries = DICTIONARIES
+  if exact_matches?
+    matching_dictionaries = Object.keys(exact_matches)
+    remaining_dictionaries = $(DICTIONARIES).not(matching_dictionaries).get()
+    for dictionary,match_ref of exact_matches
+      $("##{dictionary}-match").text("✔")
+      $("##{dictionary}-string").empty().append($('<strong>').append(generate_link(dictionary, normalized_value, match_ref)))
+      console.log("#{dictionary} done")
   require ['./vendor/fast-levenshtein/levenshtein'], (levenshtein) ->
     for dictionary in remaining_dictionaries
+      $("##{dictionary}-match").text("✗")
       match_text = ''
       match_ref = ''
       min_distance = normalized_value.length * 2
@@ -72,7 +75,6 @@ search_dictionaries_for_value = (value) ->
             min_distance = distance
             match_text = headword
             match_ref = refs[dictionary]
-      $("##{dictionary}-match").text("✗")
       $("##{dictionary}-string").empty().append(generate_link(dictionary, match_text, match_ref))
       console.log("#{dictionary} done")
 
