@@ -135,3 +135,9 @@ $(document).ready ->
     complete: (jqXHR) ->
       i = $.xhrPool.indexOf(jqXHR)
       $.xhrPool.splice(i, 1) if (i > -1)
+
+  if window.location.hash?.length
+    hash_parameter = decodeURI(window.location.hash.substr(1))
+    console.log 'got hash parameter:', hash_parameter
+    $('#search').val(hash_parameter)
+    search_for(hash_parameter)
