@@ -43,6 +43,7 @@ generate_link = (dictionary, entry, ref) ->
     when 'morph' then "http://www.perseus.tufts.edu/hopper/morph?l=#{entry}&la=greek"
     when 'wip' then "http://www.aristarchus.unige.net/Wordsinprogress/it-it/Database/View/#{ref}"
     when 'brill' then "http://dictionaries.brillonline.com/search#dictionary=montanari&id=#{ref}"
+    when 'self' then "https://dcthree.github.io/ancient-greek-lexica/##{encodeURIComponent(ref)}"
   $('<a>').attr('href',url).attr('target','_blank').text(entry)
 
 clear_results = ->
@@ -80,7 +81,19 @@ search_dictionaries_for_value = (value) ->
 
 search_for = (value) ->
   $.xhrPool.abortAll()
-  $('#search_status').empty().append($('<p>').text("Searching for: #{value} - ").append(generate_link('logeion',value,value).text("search for #{value} in Logeion")).append($('<span>').text(', ')).append(generate_link('morph',value,value).text("search for #{value} in the Perseus Greek Word Study Tool")))
+  $('#search_status').empty().append(
+    $('<p>').text("Searching for: #{value} - ").append(
+      generate_link('logeion',value,value).text("search for #{value} in Logeion")
+    ).append(
+      $('<span>').text(', ')
+    ).append(
+      generate_link('morph',value,value).text("search for #{value} in the Perseus Greek Word Study Tool")
+    ).append(
+      $('<span>').text(', ')
+    ).append(
+      generate_link('self',value,value).text("link to these search results")
+    )
+  )
   clear_results()
   if HEADWORDS?
     search_dictionaries_for_value(value)
