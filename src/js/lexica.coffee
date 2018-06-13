@@ -86,6 +86,7 @@ search_dictionaries_for_value = (value) ->
 
 search_for = (value) ->
   $.xhrPool.abortAll()
+  window.location = "##{value}"
   $('#search_status').empty().append(
     $('<p>').text("Searching for: #{value} - ").append(
       generate_link('logeion',value,value).text("search for #{value} in Logeion")
