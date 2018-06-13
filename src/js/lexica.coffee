@@ -50,6 +50,10 @@ clear_results = ->
   for dictionary in DICTIONARIES
     $("##{dictionary}-match").empty()
     $("##{dictionary}-string").empty()
+    $("##{dictionary}-search").empty()
+
+pivot_search_link = (search_string) ->
+  "<a href=\"#{window.location.href.split('#')[0]}##{encodeURIComponent(search_string)}\"><svg class=\"icon icon-search\"><use xlink:href=\"#icon-search\"></use></svg></a>"
 
 # assumes the headword index has already been loaded into HEADWORDS
 search_dictionaries_for_value = (value) ->
@@ -77,6 +81,7 @@ search_dictionaries_for_value = (value) ->
             match_text = headword
             match_ref = refs[dictionary]
       $("##{dictionary}-string").empty().append(generate_link(dictionary, match_text, match_ref))
+      $("##{dictionary}-search").empty().append(pivot_search_link(match_text))
       console.log("#{dictionary} done")
 
 search_for = (value) ->
@@ -107,6 +112,12 @@ search_for = (value) ->
       success: (data) ->
         HEADWORDS ?= data
         search_dictionaries_for_value(value)
+
+search_for_hash = ->
+  hash_parameter = decodeURI(window.location.hash.substr(1))
+  console.log 'got hash parameter:', hash_parameter
+  $('#search').val(hash_parameter)
+  search_for(hash_parameter)
 
 $(document).ready ->
   console.log('ready')
@@ -149,8 +160,7 @@ $(document).ready ->
       i = $.xhrPool.indexOf(jqXHR)
       $.xhrPool.splice(i, 1) if (i > -1)
 
+  window.addEventListener('hashchange', search_for_hash, false)
+
   if window.location.hash?.length
-    hash_parameter = decodeURI(window.location.hash.substr(1))
-    console.log 'got hash parameter:', hash_parameter
-    $('#search').val(hash_parameter)
-    search_for(hash_parameter)
+    search_for_hash()

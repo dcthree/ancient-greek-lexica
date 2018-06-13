@@ -24,9 +24,25 @@
         font-variant: small-caps;
         color: LightGray;
       }
+      .icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        stroke-width: 0;
+        stroke: currentColor;
+        fill: currentColor;
+      }
     </style>
   </head>
   <body>
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <symbol id="icon-search" viewBox="0 0 32 32">
+      <title>search</title>
+      <path d="M31.008 27.231l-7.58-6.447c-0.784-0.705-1.622-1.029-2.299-0.998 1.789-2.096 2.87-4.815 2.87-7.787 0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12c2.972 0 5.691-1.081 7.787-2.87-0.031 0.677 0.293 1.515 0.998 2.299l6.447 7.58c1.104 1.226 2.907 1.33 4.007 0.23s0.997-2.903-0.23-4.007zM12 20c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"></path>
+      </symbol>
+    </defs>
+    </svg>
     <div class="container">
       <div style="text-align: center">
         <h1>Index of Ancient Greek Lexica</h1>
@@ -50,6 +66,7 @@
               <th></th>
               <th>Exact Match</th>
               <th>Closest Matching Headword</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -58,90 +75,105 @@
               <td class="tlg">TLG</td>
               <td id="aeliusdionysius-match"></td>
               <td id="aeliusdionysius-string"></td>
+              <td id="aeliusdionysius-search"></td>
             </tr>
             <tr>
               <td>Harpokration</td>
               <td class="tlg"></td>
               <td id="harpokration-match"></td>
               <td id="harpokration-string"></td>
+              <td id="harpokration-search"></td>
             </tr>
             <tr>
               <td>Phrynichus, <i>Praeparatio</i></td>
               <td class="tlg">TLG</td>
               <td id="phrynichus-praeparatio-match"></td>
               <td id="phrynichus-praeparatio-string"></td>
+              <td id="phrynichus-praeparatio-search"></td>
             </tr>
             <tr>
               <td>Phrynichus, <i>Ecloga</i></td>
               <td class="tlg">TLG</td>
               <td id="phrynichus-ecloga-match"></td>
               <td id="phrynichus-ecloga-string"></td>
+              <td id="phrynichus-ecloga-search"></td>
             </tr>
             <tr>
               <td>Hesychius</td>
               <td class="tlg">TLG</td>
               <td id="hesychius-match"></td>
               <td id="hesychius-string"></td>
+              <td id="hesychius-search"></td>
             </tr>
             <tr>
               <td>Synagoge (Original)</td>
               <td class="tlg">TLG</td>
               <td id="synagoge-match"></td>
               <td id="synagoge-string"></td>
+              <td id="synagoge-search"></td>
             </tr>
             <tr>
               <td>Synagoge (MS. B)</td>
               <td class="tlg">TLG</td>
               <td id="synagogeb-match"></td>
               <td id="synagogeb-string"></td>
+              <td id="synagogeb-search"></td>
             </tr>
             <tr>
               <td>Photios</td>
               <td class="tlg"></td>
               <td id="photios-match"></td>
               <td id="photios-string"></td>
+              <td id="photios-search"></td>
             </tr>
             <tr>
               <td>αἱμωδεῖν</td>
               <td class="tlg">TLG</td>
               <td id="haimodein-match"></td>
               <td id="haimodein-string"></td>
+              <td id="haimodein-search"></td>
             </tr>
             <tr>
               <td>Suda</td>
               <td class="tlg"></td>
               <td id="suda-match"></td>
               <td id="suda-string"></td>
+              <td id="suda-search"></td>
             </tr>
             <tr>
               <td>Pseudo-Zonaras</td>
               <td class="tlg">TLG</td>
               <td id="zonaras-match"></td>
               <td id="zonaras-string"></td>
+              <td id="zonaras-search"></td>
             </tr>
             <tr style="border-top:solid 3px #ddd;">
               <td>LSJ</td>
               <td class="tlg"></td>
               <td id="lsj-match"></td>
               <td id="lsj-string"></td>
+              <td id="lsj-search"></td>
             </tr>
             <tr>
               <td>Logeion</td>
               <td class="tlg"></td>
               <td id="logeion-match"></td>
               <td id="logeion-string"></td>
+              <td id="logeion-search"></td>
             </tr>
             <tr>
               <td>GE</td>
               <td class="tlg">Brill</td>
               <td id="brill-match"></td>
               <td id="brill-string"></td>
+              <td id="brill-search"></td>
             </tr>
             <tr>
               <td>WiP</td>
               <td class="tlg"></td>
               <td id="wip-match"></td>
               <td id="wip-string"></td>
+              <td id="wip-search"></td>
             </tr>
           </tbody>
         </table>
