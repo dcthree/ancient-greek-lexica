@@ -151,9 +151,11 @@ $(document).ready ->
     source: []
     select: (event, ui) ->
       console.log(ui)
-      search_for(ui.item.value)
+      if window.location.hash != ui.item.value
+        search_for(ui.item.value)
     search: (event, ui) ->
-      search_for($('#search').val())
+      if window.location.hash != $('#search').val()
+        search_for($('#search').val())
 
   $.ajaxSetup
     beforeSend: (jqXHR) -> $.xhrPool.push(jqXHR)
