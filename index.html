@@ -3,11 +3,13 @@
   <head>
     <title>Index of Ancient Greek Lexica</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="src/js/vendor/typegreek/typegreek.js"></script>
     <script data-main="src/js/lexica" src="src/js/vendor/requirejs/2.3.3/require.js"></script>
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -46,15 +48,16 @@
     <div class="container">
       <div style="text-align: center">
         <h1>Index of Ancient Greek Lexica</h1>
-        <h3><small>Search for headwords in Hesychius, Photios, Phrynichus, Harpokration, Aelius Dionysius, Pseudo-Zonaras, LSJ, Logeion, Words in Progress, the Brill Dictionary of Ancient Greek, the Suda, the Lexicon αἱμωδεῖν, and the Synagoge</small></h3>
+        <h3><small>Search for headwords in Hesychius, Photios, Phrynichus, Harpokration, Aelius Dionysius, Pseudo-Zonaras, LSJ, Logeion, Words in Progress, the Brill Dictionary of Ancient Greek, the Suda, the Lexicon αἱμωδεῖν, and the Synagoge.</small></h3>
+        <h3><small>Type Greek in Unicode or <a href="http://www.typegreek.com/alphabet.key/" target="_blank">by using Beta Code</a>.</small></h3>
       </div>
       <br />
       <div class="row">
-        <div class="col-md-3"> </div>
-        <div class="ui-widget col-md-6">
-          <input id="search" class="form-control" placeholder="Enter a Greek search term" />
+        <div class="col-lg-3 hidden-xs"> </div>
+        <div class="ui-widget col-lg-6 col-xs-12">
+          <input id="search" class="form-control" onKeyPress="return convertCharToggle(this, true, event);" onKeyUp="return convertStr( this, event );" placeholder="Enter a Greek search term" />
         </div>
-        <div class="col-md-3"> </div>
+        <div class="col-lg-3 hidden-xs"> </div>
       </div>
       <br />
       <div id="search_status"><p>&nbsp;</p></div>
@@ -179,11 +182,11 @@
         </table>
       </div>
       <div class="row" id="tlg_dropdown_form">
-        <div class="col-md-8"> </div>
+        <div class="col-lg-8 col-xs-1"> </div>
         <form class="form-horizontal">
           <div class="form-group">
-            <label for="tlg_dropdown" class="col-md-2 control-label">TLG Subscription</label>
-            <div class="col-md-2">
+            <label for="tlg_dropdown" class="col-lg-2 col-xs-5 control-label">TLG Subscription</label>
+            <div class="col-lg-2 col-xs-5">
               <select id="tlg_dropdown" class="form-control">
                 <option value="inst">Institutional</option>
                 <option value="indiv">Individual</option>
