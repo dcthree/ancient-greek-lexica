@@ -1,7 +1,7 @@
 ---
 ---
 
-DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','synagoge','synagogeb','lsj','logeion','zenobius','zonaras','haimodein','wip','brill']
+DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','synagoge','synagogeb','lsj','logeion','diogenianus-vindob','diogenianus-mazarinco','zenobius','zonaras','haimodein','wip','brill']
 HEADWORDS = null
 ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
 
@@ -31,6 +31,8 @@ generate_link = (dictionary, entry, ref) ->
     when 'harpokration' then "https://dcthree.github.io/harpokration/#urn_cts_greekLit_tlg1389_tlg001_dc3_#{encodeURIComponent(ref)}"
     when 'photios' then "https://dcthree.github.io/photios/entry#urn_cts_greekLit_tlg4040_lexicon_dc3_#{encodeURIComponent(ref)}"
     when 'suda' then "http://www.stoa.org/sol-entries/#{ref}"
+    when 'diogenianus-vindob' then "#{tlg_prefix()}&aid=0097&wid=002&ct=~x%22#{ref}%22#{tlg_postfix}"
+    when 'diogenianus-mazarinco' then "#{tlg_prefix()}&aid=0097&wid=001&ct=~x%22#{ref}%22#{tlg_postfix}"
     when 'zenobius' then "#{tlg_prefix()}&aid=0098&wid=001&ct=~x%22#{ref}%22#{tlg_postfix}"
     when 'zonaras' then "#{tlg_prefix()}&aid=3136&wid=001&q=Pseudo-ZONARAS&ct=~x%22#{ref}#{tlg_postfix}"
     when 'synagoge' then "#{tlg_prefix()}&aid=4160&wid=001&ct=~x%22#{ref}#{tlg_postfix}"
