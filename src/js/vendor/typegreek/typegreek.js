@@ -278,7 +278,7 @@ function breakApartGreekCharacters(control) {
         workingString = "";
         removeOne();
         
-        if ( workingString == "ς" ) { workingString = "σ"; }
+        if ( workingString == "ς" ) { workingString = "ς"; }
         if ( workingString == "ά" ) { workingString = "α´"; }
         if ( workingString == "ἁ" ) { workingString = "α῾"; }
         if ( workingString == "ἀ" ) { workingString = "α᾿"; }
