@@ -1,7 +1,7 @@
 ---
 ---
 
-DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','synagoge','synagogeb','lsj','logeion','diogenianus-vindob','diogenianus-mazarinco','etymologicum-magnum','zenobius','zonaras','haimodein','wip','brill']
+DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','synagoge','synagogeb','lsj','logeion','diogenianus-vindob','diogenianus-mazarinco','etymologicum-magnum','zenobius','zonaras','haimodein','wip','brill','wiktionary']
 HEADWORDS = null
 ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
 
@@ -44,6 +44,7 @@ generate_link = (dictionary, entry, ref) ->
     when 'aeliusdionysius' then "#{tlg_prefix()}&aid=1323&wid=001&q=Aelius%20DIONYSIUS&ct=~x%22#{ref}#{tlg_postfix}"
     when 'haimodein' then "#{tlg_prefix()}&aid=4288&wid=002&ct=~x%22#{ref}#{tlg_postfix}"
     when 'logeion' then "http://logeion.uchicago.edu/index.html##{entry}"
+    when 'wiktionary' then "https://en.wiktionary.org/wiki/#{entry}"
     when 'morph' then "http://www.perseus.tufts.edu/hopper/morph?l=#{entry}&la=greek"
     when 'wip' then "http://www.aristarchus.unige.net/Wordsinprogress/it-it/Database/View/#{ref}"
     when 'brill' then "http://dictionaries.brillonline.com/search#dictionary=montanari&id=#{ref}"
