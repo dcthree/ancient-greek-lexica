@@ -9,7 +9,7 @@ Lexica in *italics* are too fragmentary to include.
 - [ ] Herennius Philo (aka 'Ammonius' or 'Ptolemy') - De adfinium vocabulorum differentia, De diversis verborum significationibus (2nd C)
 - [x] Harpokration (2nd C)
 - [ ] Julius Pollux - Onomasticon (2nd C)
-- [ ] The anti-atticist (~40 print pages) (Bekker Anecdota Graeca i.75–116) (2nd C)
+- [ ] The anti-atticist (~40 print pages) (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.75–116) (2nd C)
 - [x] Phrynichus Arabius (2nd C)
 - [ ] Moeris (1,000 entries) (3rd C?)
 - [X] *Philemon* (3rd/2nd C BCE) (lost but survives in Ath.)
@@ -30,8 +30,8 @@ Lexica in *italics* are too fragmentary to include.
 - [ ] ~= Etymologicum (Florentinum) parvum (only have entries from the first half of the alphabet)
 - [x] Ps. Zonaras (13th C)
 - [ ] Lexicon Vindobonense (14th C): <https://books.google.com/books?id=Is8NAAAAIAAJ>
-- [ ] Λέξεις ῥητοριχαί: (Bekker Anecdota Graeca i.195-318) = BkV
-- [ ] Διχῶν ὀνόματα: (Bekker Anecdota Graeca i.181-194) = BkIV
+- [ ] Λέξεις ῥητοριχαί: (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.195-318) = BkV
+- [ ] Διχῶν ὀνόματα: (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.181-194) = BkIV
 - [ ] Apollonii Sophistae Lexicon Homericum: (Bekker, Berlin, 1833)
 
 ## Paroemiographers:
