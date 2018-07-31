@@ -33,7 +33,7 @@ Lexica in *italics* are probably too fragmentary to include.
 - [ ] Lexicon Vindobonense (14th C): <https://books.google.com/books?id=Is8NAAAAIAAJ> (in TLG)
 - [ ] Δικῶν ὀνόματα (Names of lawsuits): (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.181-194) = BkIV, in TLG under *Lexica Segueriana*, see Erbse in Latte's *Lexica graeca minora*, p. ix
 - [ ] Λέξεις ῥητορικαί (Rhetorical expressions): (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.195-318) = BkV, in TLG under *Lexica Segueriana*, see Erbse in Latte's *Lexica graeca minora*, p. ix
-- [ ] Ῥητορικαὶ λέξεις NB: Not the above, but under "ANONYMI LEXEIS RHETORICAE" in TLG = M.N. Naoumides, Ῥητορικαὶ λέξεις. Editio princeps [Ἀθηνᾶ. Σειρὰ διατριβῶν καὶ μελετημάτων 20. Athens: Myrtides, 1975]: 59-85.
+- [ ] Ῥητορικαὶ λέξεις NB: Not the above, but under "ANONYMI LEXEIS RHETORICAE" in TLG = M.N. Naoumides, Ῥητορικαὶ λέξεις. Editio princeps [Ἀθηνᾶ. Σειρὰ διατριβῶν καὶ μελετημάτων 20. Athens: Myrtides, 1975]: 59-85. (332 entries)
 
 ## Paroemiographers:
 - [x] Zenobius (2nd C)
