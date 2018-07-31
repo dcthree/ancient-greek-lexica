@@ -31,7 +31,7 @@ Lexica in *italics* are too fragmentary to include.
 - [x] Ps. Zonaras (13th C)
 - [ ] Lexicon Vindobonense (14th C): <https://books.google.com/books?id=Is8NAAAAIAAJ>
 - [ ] Λέξεις ῥητοριχαί: (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.195-318) = BkV
-- [ ] Διχῶν ὀνόματα: (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.181-194) = BkIV
+- [ ] Δικῶν ὀνόματα: (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.181-194) = BkIV
 - [ ] Apollonii Sophistae Lexicon Homericum: (Bekker, Berlin, 1833)
 
 ## Paroemiographers:
