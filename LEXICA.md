@@ -1,6 +1,6 @@
 # ancient-greek-lexica
 
-Lexica in *italics* are too fragmentary to include.
+Lexica in *italics* are probably too fragmentary to include.
 
 ## Lexica:
 - [X] *Aristophanes of Byzantium* (fragmentary) (257-180 BCE)
@@ -14,8 +14,8 @@ Lexica in *italics* are too fragmentary to include.
 - [ ] Moeris (1,000 entries) (3rd C?)
 - [X] *Philemon* (3rd/2nd C BCE) (lost but survives in Ath.)
 - [X] *Philemon B* (3rd C CE) (~4 print pages?)
-- [ ] Orus (5th C)
-- [ ] Orio(n) of Thebes (5th C)
+- [X] *Orus* (5th C) (Alpers 1981 = TLG) (ca.240 fragments)
+- [ ] Orio(n) of Thebes (5th C) (172 pages: <https://archive.org/details/bub_gb_sTMooLRzQzUC>)
 - [ ] Cyrillus (5th C) (mostly unpublished, in progress by N. Wilson and H. van Thiel?)
 - [x] Hesychius (5th/6th C)
 - [ ] Stephanus of Byzantium (6th C)
