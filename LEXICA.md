@@ -9,7 +9,7 @@ Lexica in *italics* are too fragmentary to include.
 - [ ] Herennius Philo (aka 'Ammonius' or 'Ptolemy') - De adfinium vocabulorum differentia, De diversis verborum significationibus (2nd C)
 - [x] Harpokration (2nd C)
 - [ ] Julius Pollux - Onomasticon (2nd C)
-- [ ] The anti-atticist (~40 print pages) (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.75–116) (2nd C), *Lexica Segueriana*, see Alpers *Das attizistische Lexikon des Oros* p.108
+- [ ] The anti-atticist (~40 print pages) (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.75–116) (2nd C), *Lexica Segueriana*, see Alpers *Das attizistische Lexikon des Oros* p.108 which states that the main source is Aristophanes of Byzantium
 - [x] Phrynichus Arabius (2nd C)
 - [ ] Moeris (1,000 entries) (3rd C?)
 - [X] *Philemon* (3rd/2nd C BCE) (lost but survives in Ath.)
