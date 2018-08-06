@@ -1,7 +1,7 @@
 ---
 ---
 
-DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','synagoge','synagogeb','lsj','logeion','diogenianus-vindob','diogenianus-mazarinco','etymologicum-genuinum','etymologicum-magnum','lexeis-rhetorikia','zenobius','zonaras','haimodein','wip','brill','wiktionary']
+DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','synagoge','synagogeb','lsj','logeion','diogenianus-vindob','diogenianus-mazarinco','etymologicum-genuinum','etymologicum-magnum','etymologicum-gudianum','lexeis-rhetorikia','zenobius','zonaras','haimodein','wip','brill','wiktionary']
 HEADWORDS = null
 ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
 
@@ -31,6 +31,17 @@ generate_link = (dictionary, entry, ref) ->
     when 'harpokration' then "https://dcthree.github.io/harpokration/#urn_cts_greekLit_tlg1389_tlg001_dc3_#{encodeURIComponent(ref)}"
     when 'photios' then "https://dcthree.github.io/photios/entry#urn_cts_greekLit_tlg4040_lexicon_dc3_#{encodeURIComponent(ref)}"
     when 'suda' then "http://www.stoa.org/sol-entries/#{ref}"
+    when 'etymologicum-gudianum'
+      switch ref.split('%22y%22')[0]
+        when 'alpha','beta','gamma','delta','epsilon'
+          "#{tlg_prefix()}&aid=4098&wid=001&ct=~x%22#{ref}%22#{tlg_postfix}"
+        when 'zeta'
+          if ref.split('%22y%22')[1] >= 578
+            "#{tlg_prefix()}&aid=4098&wid=001&ct=~x%22#{ref}%22#{tlg_postfix}"
+          else
+            "#{tlg_prefix()}&aid=4098&wid=002&ct=~x%22#{ref}%22#{tlg_postfix}"
+        else
+          "#{tlg_prefix()}&aid=4098&wid=002&ct=~x%22#{ref}%22#{tlg_postfix}"
     when 'etymologicum-genuinum'
       if (/^alpha/.test(ref)) and (ref.split('%22y')[1] <= 760)
         "#{tlg_prefix()}&aid=4097&wid=001&ct=~x%22#{ref}#{tlg_postfix}"
