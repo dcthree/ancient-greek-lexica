@@ -16,7 +16,7 @@ Lexica in *italics* are probably too fragmentary to include.
 - [X] *Philemon* (3rd/2nd C BCE) (lost but survives in Ath.)
 - [X] *Philemon B* (3rd C CE) (~4 print pages?)
 - [X] *Orus* (5th C) (Alpers 1981 = TLG) (ca.240 fragments)
-- [ ] Orio(n) of Thebes (5th C) (172 pages: <https://archive.org/details/bub_gb_sTMooLRzQzUC>)
+- [x] Orio(n) of Thebes (5th C) (172 pages: <https://archive.org/details/bub_gb_sTMooLRzQzUC>)
 - [ ] Cyrillus (5th C) (mostly unpublished, in progress by N. Wilson and H. van Thiel?)
 - [x] Hesychius (5th/6th C)
 - [ ] Stephanus of Byzantium (6th C)
