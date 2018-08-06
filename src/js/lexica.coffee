@@ -1,7 +1,7 @@
 ---
 ---
 
-DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','synagoge','synagogeb','lsj','logeion','diogenianus-vindob','diogenianus-mazarinco','etymologicum-genuinum','etymologicum-magnum','etymologicum-gudianum','lexeis-rhetorikia','zenobius','zonaras','haimodein','wip','brill','wiktionary']
+DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','synagoge','synagogeb','lsj','logeion','diogenianus-vindob','diogenianus-mazarinco','etymologicum-genuinum','etymologicum-magnum','etymologicum-gudianum','lexeis-rhetorikai','zenobius','zonaras','haimodein','wip','brill','wiktionary']
 HEADWORDS = null
 ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
 
