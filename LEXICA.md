@@ -4,7 +4,7 @@ Lexica in *italics* are probably too fragmentary to include.
 
 ## Lexica:
 - [X] *Aristophanes of Byzantium* (fragmentary) (257-180 BCE)
-- [ ] Apollonius the Sophist (1st C) - Λέξεις Ὁμηρικαί = [Apollonii Sophistae Lexicon Homericum: (Bekker, Berlin, 1833)](https://archive.org/details/apolloniisophis00bekkgoog) (171 pages)
+- [x] Apollonius the Sophist (1st C) - Λέξεις Ὁμηρικαί = [Apollonii Sophistae Lexicon Homericum: (Bekker, Berlin, 1833)](https://archive.org/details/apolloniisophis00bekkgoog) (171 pages)
 - [x] Aelius Dionysius (2nd C) (mostly lost, reconstructed by Erbse)
 - [ ] Pausanias ([TLG](http://stephanus.tlg.uci.edu/Iris/inst/browser.jsp#doc=tlg&aid=1569&wid=001&st=0&l=20)) (2nd C) (mostly lost, reconstructed by Erbse)
 - [ ] Herennius Philo (aka 'Ammonius' or 'Ptolemy') - De adfinium vocabulorum differentia, De diversis verborum significationibus (2nd C)

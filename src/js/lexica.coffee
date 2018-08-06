@@ -1,7 +1,7 @@
 ---
 ---
 
-DICTIONARIES = ['aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','moeris','orion','synagoge','synagogeb','lsj','logeion','diogenianus-vindob','diogenianus-mazarinco','etymologicum-genuinum','etymologicum-magnum','etymologicum-gudianum','lexeis-rhetorikai','zenobius','zonaras','haimodein','wip','brill','wiktionary']
+DICTIONARIES = ['apollonius','aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','moeris','orion','synagoge','synagogeb','lsj','logeion','diogenianus-vindob','diogenianus-mazarinco','etymologicum-genuinum','etymologicum-magnum','etymologicum-gudianum','lexeis-rhetorikai','zenobius','zonaras','haimodein','wip','brill','wiktionary']
 HEADWORDS = null
 ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
 
@@ -51,6 +51,7 @@ generate_link = (dictionary, entry, ref) ->
     when 'diogenianus-vindob' then "#{tlg_prefix()}&aid=0097&wid=002&ct=~x%22#{ref}%22#{tlg_postfix}"
     when 'diogenianus-mazarinco' then "#{tlg_prefix()}&aid=0097&wid=001&ct=~x%22#{ref}%22#{tlg_postfix}"
     when 'lexeis-rhetorikai' then "#{tlg_prefix()}&aid=4289&wid=004&ct=~x%22#{ref}&l=40&td=greek"
+    when 'apollonius' then "#{tlg_prefix()}&aid=1168&wid=001&ct=~y#{ref}#{tlg_postfix}"
     when 'moeris' then "#{tlg_prefix()}&aid=1515&wid=002&ct=~x%22#{ref}#{tlg_postfix}"
     when 'orion' then "#{tlg_prefix()}&aid=2591&wid=001&ct=~x%22#{ref}#{tlg_postfix}"
     when 'zenobius' then "#{tlg_prefix()}&aid=0098&wid=001&ct=~x%22#{ref}%22#{tlg_postfix}"
