@@ -12,7 +12,7 @@ Lexica in *italics* are probably too fragmentary to include.
 - [ ] Julius Pollux - Onomasticon (2nd C)
 - [ ] Anonymous antatticista ("the anti-atticist") (~40 print pages) (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.75–116) (2nd C), in TLG under *Lexica Segueriana*, see Alpers *Das attizistische Lexikon des Oros* p.108 which states that the main source is Aristophanes of Byzantium
 - [x] Phrynichus Arabius (2nd C)
-- [ ] Moeris (1,000 entries) (3rd C?)
+- [x] Moeris (1,000 entries) (3rd C?)
 - [X] *Philemon* (3rd/2nd C BCE) (lost but survives in Ath.)
 - [X] *Philemon B* (3rd C CE) (~4 print pages?)
 - [X] *Orus* (5th C) (Alpers 1981 = TLG) (ca.240 fragments)
