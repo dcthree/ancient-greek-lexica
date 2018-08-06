@@ -24,7 +24,7 @@ Lexica in *italics* are probably too fragmentary to include.
 - [x] Photios (9th C)
 - [x] Lexicon αἱμωδεῖν (9th/10th C)
 - [x] Suda (10th C)
-- [ ] Etymologicum genuinum (9th C)
+- [x] Etymologicum genuinum (9th C) (currently missing lambda entries)
 - [x] ~= Etymologicum Magnum (12th C)
 - [ ] ~= Etymologicum Gudianum (11th C)
 - [ ] ~= Etymologicum Symeonis (12th C) (unpublished, but MS V in Gaisford 1848)
@@ -39,3 +39,4 @@ Lexica in *italics* are probably too fragmentary to include.
 - [x] Zenobius (2nd C)
 - [x] Diogenianus (2nd C)
 - [ ] Michael Apostolius (15th C)
+- [ ] Arsenius' Apophthegmata (15th C)
