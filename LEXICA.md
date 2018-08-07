@@ -19,7 +19,7 @@ Lexica in *italics* are probably too fragmentary to include.
 - [x] Orio(n) of Thebes (5th C) (172 pages: <https://archive.org/details/bub_gb_sTMooLRzQzUC>)
 - [ ] Cyrillus (5th C) (mostly unpublished, in progress by N. Wilson and H. van Thiel?)
 - [x] Hesychius (5th/6th C)
-- [ ] Stephanus of Byzantium (6th C)
+- [x] Stephanus of Byzantium (6th C)
 - [x] Synagoge (9th C)
 - [x] Photios (9th C)
 - [x] Lexicon αἱμωδεῖν (9th/10th C)
