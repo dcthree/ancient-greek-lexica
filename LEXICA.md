@@ -26,12 +26,12 @@ Lexica in *italics* are probably too fragmentary to include.
 - [x] Suda (10th C)
 - [x] Etymologicum genuinum (9th C) (currently missing lambda entries)
 - [x] ~= Etymologicum Magnum (12th C)
-- [ ] ~= Etymologicum Gudianum (11th C)
+- [x] ~= Etymologicum Gudianum (11th C)
 - [ ] ~= Etymologicum Symeonis (12th C) (unpublished, but MS V in Gaisford 1848)
 - [ ] ~= Etymologicum (Florentinum) parvum (only have entries from the first half of the alphabet)
 - [x] Ps. Zonaras (13th C)
 - [ ] Lexicon Vindobonense (14th C): <https://books.google.com/books?id=Is8NAAAAIAAJ> (in TLG)
-- [ ] Δικῶν ὀνόματα (Names of lawsuits): (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.181-194) = BkIV, in TLG under *Lexica Segueriana*, see Erbse in Latte's *Lexica graeca minora*, p. ix
+- [x] Δικῶν ὀνόματα (Names of lawsuits): (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.181-194) = BkIV, in TLG under *Lexica Segueriana*, see Erbse in Latte's *Lexica graeca minora*, p. ix
 - [x] Λέξεις ῥητορικαί (Rhetorical expressions): (Bekker [Anecdota Graeca](https://archive.org/details/anecdotagraeca00bekkgoog) i.195-318) = BkV, in TLG under *Lexica Segueriana*, see Erbse in Latte's *Lexica graeca minora*, p. ix
 - [ ] Ῥητορικαὶ λέξεις NB: Not the above, but under "ANONYMI LEXEIS RHETORICAE" in TLG = M.N. Naoumides, Ῥητορικαὶ λέξεις. Editio princeps [Ἀθηνᾶ. Σειρὰ διατριβῶν καὶ μελετημάτων 20. Athens: Myrtides, 1975]: 59-85. (332 entries)
 
