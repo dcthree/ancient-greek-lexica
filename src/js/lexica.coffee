@@ -74,7 +74,7 @@ generate_link = (dictionary, entry, ref) ->
     when 'phrynichus-praeparatio' then "#{tlg_prefix()}&aid=1608&wid=001&q=PHRYNICHUS&ct=~y#{ref}&l=40&td=greek"
     when 'aeliusdionysius' then "#{tlg_prefix()}&aid=1323&wid=001&q=Aelius%20DIONYSIUS&ct=~x%22#{ref}#{tlg_postfix}"
     when 'haimodein' then "#{tlg_prefix()}&aid=4288&wid=002&ct=~x%22#{ref}#{tlg_postfix}"
-    when 'logeion' then "http://logeion.uchicago.edu/index.html##{entry}"
+    when 'logeion' then "http://logeion.uchicago.edu/#{entry}"
     when 'wiktionary' then "https://en.wiktionary.org/wiki/#{entry}"
     when 'morph' then "http://www.perseus.tufts.edu/hopper/morph?l=#{entry}&la=greek"
     when 'wip' then "http://www.aristarchus.unige.net/Wordsinprogress/it-it/Database/View/#{ref}"
