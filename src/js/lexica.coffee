@@ -108,7 +108,7 @@ search_dictionaries_for_value = (value) ->
       $("##{dictionary}-match").text("✗")
       match_text = ''
       match_ref = ''
-      min_distance = normalized_value.length * 2
+      min_distance = normalized_value.length * 3
       for headword,refs of HEADWORDS
         if refs[dictionary]?
           distance = levenshtein.get(normalized_value, headword)
