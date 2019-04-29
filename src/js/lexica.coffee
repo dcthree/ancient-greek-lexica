@@ -167,8 +167,10 @@ $(document).ready ->
       console.log "AJAX Error: #{textStatus}"
     success: (data) ->
       console.log("headwords fetched")
+      HEADWORDS ?= data
+      $('#search').prop('placeholder','Enter a Greek search term')
+      $('#search').prop('disabled',false)
       $('#search').autocomplete "option", "source", (request, response) ->
-        HEADWORDS ?= data
         normalized_term = normalize(request.term)
         matches = []
         if strip_accents(normalized_term) == normalized_term # no accents in search string, strip accents for matching
