@@ -102,7 +102,7 @@ search_dictionaries_for_value = (value) ->
     for dictionary,match_ref of exact_matches
       $("##{dictionary}-match").text("✔")
       $("##{dictionary}-string").empty().append($('<strong>').append(generate_link(dictionary, normalized_value, match_ref)))
-      console.log("#{dictionary} done")
+      # console.log("#{dictionary} done")
   require ['./vendor/fast-levenshtein/levenshtein'], (levenshtein) ->
     for dictionary in remaining_dictionaries
       $("##{dictionary}-match").text("✗")
@@ -118,11 +118,10 @@ search_dictionaries_for_value = (value) ->
             match_ref = refs[dictionary]
       $("##{dictionary}-string").empty().append(generate_link(dictionary, match_text, match_ref))
       $("##{dictionary}-search").empty().append(pivot_search_link(match_text))
-      console.log("#{dictionary} done")
+      # console.log("#{dictionary} done")
 
-search_for = (value) ->
-  $.xhrPool.abortAll()
-  window.location = "##{value}"
+perform_search = (value) ->
+  console.log 'perform_search:', value
   $('#search_status').empty().append(
     $('<p>').text("Searching for: #{value} - ").append(
       generate_link('logeion',value,value).text("search for #{value} in Logeion")
@@ -150,11 +149,16 @@ search_for = (value) ->
         HEADWORDS ?= data
         search_dictionaries_for_value(value)
 
+search_for = (value) ->
+  console.log 'search_for:', value
+  $.xhrPool.abortAll()
+  window.location = "##{value}"
+
 search_for_hash = ->
   hash_parameter = decodeURI(window.location.hash.substr(1))
   console.log 'got hash parameter:', hash_parameter
   $('#search').val(hash_parameter)
-  search_for(hash_parameter)
+  perform_search(hash_parameter)
 
 $(document).ready ->
   console.log('ready')
@@ -188,7 +192,7 @@ $(document).ready ->
     minLength: 1
     source: []
     select: (event, ui) ->
-      console.log(ui)
+      # console.log(ui)
       if window.location.hash != ui.item.value
         search_for(ui.item.value)
     search: (event, ui) ->
