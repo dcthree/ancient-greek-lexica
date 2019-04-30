@@ -5,6 +5,7 @@ DICTIONARIES = ['apollonius','aeliusdionysius','hesychius','suda','photios','phr
 HEADWORDS = null
 ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
 SEARCH_WORKER = null
+LAST_SEARCH = null
 
 $.xhrPool = []
 $.xhrPool.abortAll = ->
@@ -94,35 +95,39 @@ pivot_search_link = (search_string) ->
 
 process_search_worker_result = (e) ->
   console.log('process_search_worker_result called')
-  for dictionary,match_ref of e.data.exact_matches
-    $("##{dictionary}-match").text("✔")
-    $("##{dictionary}-string").empty().append($('<strong>').append(generate_link(dictionary, e.data.search_term, match_ref)))
-  for dictionary,result of e.data.inexact_matches
-    $("##{dictionary}-string").empty().append(generate_link(dictionary, result.match_text, result.match_ref))
-    $("##{dictionary}-search").empty().append(pivot_search_link(result.match_text))
+  if e.data.search_term == LAST_SEARCH
+    requestAnimationFrame ->
+      for dictionary,match_ref of e.data.exact_matches
+        $("##{dictionary}-match").text("✔")
+        $("##{dictionary}-string").empty().append($('<strong>').append(generate_link(dictionary, e.data.search_term, match_ref)))
+      for dictionary,result of e.data.inexact_matches
+        $("##{dictionary}-string").empty().append(generate_link(dictionary, result.match_text, result.match_ref))
+        $("##{dictionary}-search").empty().append(pivot_search_link(result.match_text))
 
 # assumes the headword index has already been loaded into HEADWORDS
 search_dictionaries_for_value = (value) ->
   normalized_value = normalize(value)
+  LAST_SEARCH = normalized_value
   SEARCH_WORKER.postMessage
     search_term: normalized_value
 
 perform_search = (value) ->
   console.log 'perform_search:', value
-  $('#search_status').empty().append(
-    $('<p>').text("Searching for: #{value} - ").append(
-      generate_link('logeion',value,value).text("search for #{value} in Logeion")
-    ).append(
-      $('<span>').text(', ')
-    ).append(
-      generate_link('morph',value,value).text("search for #{value} in the Perseus Greek Word Study Tool")
-    ).append(
-      $('<span>').text(', ')
-    ).append(
-      generate_link('self',value,value).text("link to these search results")
+  requestAnimationFrame ->
+    $('#search_status').empty().append(
+      $('<p>').text("Searching for: #{value} - ").append(
+        generate_link('logeion',value,value).text("search for #{value} in Logeion")
+      ).append(
+        $('<span>').text(', ')
+      ).append(
+        generate_link('morph',value,value).text("search for #{value} in the Perseus Greek Word Study Tool")
+      ).append(
+        $('<span>').text(', ')
+      ).append(
+        generate_link('self',value,value).text("link to these search results")
+      )
     )
-  )
-  clear_results()
+    clear_results()
   if HEADWORDS?
     search_dictionaries_for_value(value)
   else
@@ -154,12 +159,12 @@ $(document).ready ->
     method: 'GET'
     cache: 'default'
   .then (response) ->
-      console.log("headwords fetched")
       SEARCH_WORKER ?= new Worker('src/js/search-worker.js')
       SEARCH_WORKER.postMessage
         dictionaries: DICTIONARIES
       SEARCH_WORKER.onmessage = process_search_worker_result
       response.json().then (headwords_json) ->
+        console.log("headwords fetched")
         HEADWORDS ?= headwords_json
         SEARCH_WORKER.postMessage
           headwords: HEADWORDS
