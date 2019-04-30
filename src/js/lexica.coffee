@@ -131,15 +131,7 @@ perform_search = (value) ->
   if HEADWORDS?
     search_dictionaries_for_value(value)
   else
-    $.ajax "data/headwords.json",
-      type: 'GET'
-      dataType: 'json'
-      cache: true
-      error: (jqXHR, textStatus, errorThrown) ->
-        console.log "AJAX Error: #{textStatus}"
-      success: (data) ->
-        HEADWORDS ?= data
-        search_dictionaries_for_value(value)
+    console.log('perform_search called with uninitialized headwords!')
 
 search_for = (value) ->
   console.log 'search_for:', value
@@ -170,6 +162,12 @@ $(document).ready ->
           headwords: HEADWORDS
         $('#search').prop('placeholder','Enter a Greek search term')
         $('#search').prop('disabled',false)
+        $('#tlg_dropdown').prop('disabled',false)
+        $('#tlg_dropdown').change ->
+          perform_search($('#search').val())
+        window.addEventListener('hashchange', search_for_hash, false)
+        if window.location.hash?.length
+          search_for_hash()
         $('#search').autocomplete "option", "source", (request, response) ->
           normalized_term = normalize(request.term)
           matches = []
@@ -179,9 +177,6 @@ $(document).ready ->
             matches = Object.keys(HEADWORDS).filter (h) -> h.startsWith(normalized_term)
           matches = matches.sort (a,b) -> a.length - b.length
           response(matches[0..20])
-
-  $('#tlg_dropdown').change ->
-    search_for($('#search').val())
 
   $('#search').autocomplete
     delay: 600
@@ -200,8 +195,3 @@ $(document).ready ->
     complete: (jqXHR) ->
       i = $.xhrPool.indexOf(jqXHR)
       $.xhrPool.splice(i, 1) if (i > -1)
-
-  window.addEventListener('hashchange', search_for_hash, false)
-
-  if window.location.hash?.length
-    search_for_hash()
