@@ -40,3 +40,16 @@ Lexica in *italics* are probably too fragmentary to include.
 - [x] Diogenianus (2nd C)
 - [ ] Michael Apostolius (15th C)
 - [ ] Arsenius' Apophthegmata (15th C)
+
+## Greek-Latin Lexica:
+- [ ] Stephanus/Estienne TGL
+- [ ] Hedericus
+- [ ] Schrevelius
+
+## Modern Lexica:
+- [x] LSJ 1940 http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0057
+- [ ] Middle Liddell (LSJ Intermediate 1889) http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0058
+- [ ] Slater
+- [ ] Autenrieth (Homeric) http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0073
+- [ ] Cunliffe (Homeric)
+- [ ] Anatole Bailly 1935 Le Grand Bailly (Greek-French)
