@@ -4,6 +4,7 @@
 DICTIONARIES = ['apollonius','aeliusdionysius','hesychius','suda','photios','phrynichus-ecloga','phrynichus-praeparatio','harpokration','moeris','orion','stephbyz','synagoge','synagogeb','lsj','logeion','diogenianus-vindob','diogenianus-mazarinco','etymologicum-genuinum','etymologicum-magnum','etymologicum-gudianum','dikon-onomata','lexeis-rhetorikai','zenobius','zonaras','haimodein','wip','brill','wiktionary']
 HEADWORDS = null
 ACCENTS_REGEX = new RegExp('[\u0300-\u036F\u0374-\u037A\u0384\u0385]', 'g')
+SEARCH_WORKER = null
 
 $.xhrPool = []
 $.xhrPool.abortAll = ->
@@ -91,34 +92,20 @@ clear_results = ->
 pivot_search_link = (search_string) ->
   "<a href=\"#{window.location.href.split('#')[0]}##{encodeURIComponent(search_string)}\"><svg class=\"icon icon-search\"><use xlink:href=\"#icon-search\"></use></svg></a>"
 
+process_search_worker_result = (e) ->
+  console.log('process_search_worker_result called')
+  for dictionary,match_ref of e.data.exact_matches
+    $("##{dictionary}-match").text("✔")
+    $("##{dictionary}-string").empty().append($('<strong>').append(generate_link(dictionary, e.data.search_term, match_ref)))
+  for dictionary,result of e.data.inexact_matches
+    $("##{dictionary}-string").empty().append(generate_link(dictionary, result.match_text, result.match_ref))
+    $("##{dictionary}-search").empty().append(pivot_search_link(result.match_text))
+
 # assumes the headword index has already been loaded into HEADWORDS
 search_dictionaries_for_value = (value) ->
   normalized_value = normalize(value)
-  exact_matches = HEADWORDS[normalized_value]
-  remaining_dictionaries = DICTIONARIES
-  if exact_matches?
-    matching_dictionaries = Object.keys(exact_matches)
-    remaining_dictionaries = $(DICTIONARIES).not(matching_dictionaries).get()
-    for dictionary,match_ref of exact_matches
-      $("##{dictionary}-match").text("✔")
-      $("##{dictionary}-string").empty().append($('<strong>').append(generate_link(dictionary, normalized_value, match_ref)))
-      # console.log("#{dictionary} done")
-  require ['./vendor/fast-levenshtein/levenshtein'], (levenshtein) ->
-    for dictionary in remaining_dictionaries
-      $("##{dictionary}-match").text("✗")
-      match_text = ''
-      match_ref = ''
-      min_distance = normalized_value.length * 3
-      for headword,refs of HEADWORDS
-        if refs[dictionary]?
-          distance = levenshtein.get(normalized_value, headword)
-          if distance < min_distance
-            min_distance = distance
-            match_text = headword
-            match_ref = refs[dictionary]
-      $("##{dictionary}-string").empty().append(generate_link(dictionary, match_text, match_ref))
-      $("##{dictionary}-search").empty().append(pivot_search_link(match_text))
-      # console.log("#{dictionary} done")
+  SEARCH_WORKER.postMessage
+    search_term: normalized_value
 
 perform_search = (value) ->
   console.log 'perform_search:', value
@@ -162,7 +149,12 @@ search_for_hash = ->
 
 $(document).ready ->
   console.log('ready')
-  
+ 
+  SEARCH_WORKER ?= new Worker('src/js/search-worker.js')
+  SEARCH_WORKER.postMessage
+    dictionaries: DICTIONARIES
+  SEARCH_WORKER.onmessage = process_search_worker_result
+
   $.ajax 'data/headwords.json',
     type: 'GET'
     dataType: 'json'
@@ -172,6 +164,8 @@ $(document).ready ->
     success: (data) ->
       console.log("headwords fetched")
       HEADWORDS ?= data
+      SEARCH_WORKER.postMessage
+        headwords: HEADWORDS
       $('#search').prop('placeholder','Enter a Greek search term')
       $('#search').prop('disabled',false)
       $('#search').autocomplete "option", "source", (request, response) ->
