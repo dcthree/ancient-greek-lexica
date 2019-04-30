@@ -150,33 +150,30 @@ search_for_hash = ->
 $(document).ready ->
   console.log('ready')
  
-  SEARCH_WORKER ?= new Worker('src/js/search-worker.js')
-  SEARCH_WORKER.postMessage
-    dictionaries: DICTIONARIES
-  SEARCH_WORKER.onmessage = process_search_worker_result
-
-  $.ajax 'data/headwords.json',
-    type: 'GET'
-    dataType: 'json'
-    cache: true
-    error: (jqXHR, textStatus, errorThrown) ->
-      console.log "AJAX Error: #{textStatus}"
-    success: (data) ->
+  fetch 'data/headwords.json',
+    method: 'GET'
+    cache: 'default'
+  .then (response) ->
       console.log("headwords fetched")
-      HEADWORDS ?= data
+      SEARCH_WORKER ?= new Worker('src/js/search-worker.js')
       SEARCH_WORKER.postMessage
-        headwords: HEADWORDS
-      $('#search').prop('placeholder','Enter a Greek search term')
-      $('#search').prop('disabled',false)
-      $('#search').autocomplete "option", "source", (request, response) ->
-        normalized_term = normalize(request.term)
-        matches = []
-        if strip_accents(normalized_term) == normalized_term # no accents in search string, strip accents for matching
-          matches = Object.keys(HEADWORDS).filter (h) -> strip_accents(h).startsWith(normalized_term)
-        else # accents in search string, don't strip accents for matching
-          matches = Object.keys(HEADWORDS).filter (h) -> h.startsWith(normalized_term)
-        matches = matches.sort (a,b) -> a.length - b.length
-        response(matches[0..20])
+        dictionaries: DICTIONARIES
+      SEARCH_WORKER.onmessage = process_search_worker_result
+      response.json().then (headwords_json) ->
+        HEADWORDS ?= headwords_json
+        SEARCH_WORKER.postMessage
+          headwords: HEADWORDS
+        $('#search').prop('placeholder','Enter a Greek search term')
+        $('#search').prop('disabled',false)
+        $('#search').autocomplete "option", "source", (request, response) ->
+          normalized_term = normalize(request.term)
+          matches = []
+          if strip_accents(normalized_term) == normalized_term # no accents in search string, strip accents for matching
+            matches = Object.keys(HEADWORDS).filter (h) -> strip_accents(h).startsWith(normalized_term)
+          else # accents in search string, don't strip accents for matching
+            matches = Object.keys(HEADWORDS).filter (h) -> h.startsWith(normalized_term)
+          matches = matches.sort (a,b) -> a.length - b.length
+          response(matches[0..20])
 
   $('#tlg_dropdown').change ->
     search_for($('#search').val())
