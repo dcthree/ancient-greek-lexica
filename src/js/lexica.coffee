@@ -97,6 +97,7 @@ process_search_worker_result = (e) ->
   console.log('process_search_worker_result called')
   if e.data.search_term == LAST_SEARCH
     requestAnimationFrame ->
+      $('#spinner').hide()
       for dictionary,match_ref of e.data.exact_matches
         $("##{dictionary}-match").text("✔")
         $("##{dictionary}-string").empty().append($('<strong>').append(generate_link(dictionary, e.data.search_term, match_ref)))
@@ -108,6 +109,7 @@ process_search_worker_result = (e) ->
 search_dictionaries_for_value = (value) ->
   normalized_value = normalize(value)
   LAST_SEARCH = normalized_value
+  $('#spinner').show()
   SEARCH_WORKER.postMessage
     search_term: normalized_value
 
@@ -160,6 +162,7 @@ $(document).ready ->
         HEADWORDS ?= headwords_json
         SEARCH_WORKER.postMessage
           headwords: HEADWORDS
+        $('#spinner').hide()
         $('#search').prop('placeholder','Enter a Greek search term')
         $('#search').prop('disabled',false)
         $('#tlg_dropdown').prop('disabled',false)

@@ -54,10 +54,13 @@
       <br />
       <div class="row">
         <div class="col-lg-3 hidden-xs"> </div>
-        <div class="ui-widget col-lg-6 col-xs-12">
+        <div class="ui-widget col-lg-6 col-xs-10">
           <input id="search" class="form-control" onKeyPress="return convertCharToggle(this, true, event);" onKeyUp="return convertStr( this, event );" placeholder="Loading dictionary data..." disabled/>
         </div>
-        <div class="col-lg-3 hidden-xs"> </div>
+        <div id="spinner" class="col-xs-1 col-lg-1">
+          <img src="spinner.gif" alt="spinner">
+        </div>
+        <div class="col-lg-2 col-xs-1"> </div>
       </div>
       <br />
       <div id="search_status"><p>&nbsp;</p></div>
