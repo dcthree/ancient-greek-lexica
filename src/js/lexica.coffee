@@ -77,6 +77,7 @@ generate_link = (dictionary, entry, ref) ->
     when 'aeliusdionysius' then "#{tlg_prefix()}&aid=1323&wid=001&q=Aelius%20DIONYSIUS&ct=~x%22#{ref}#{tlg_postfix}"
     when 'haimodein' then "#{tlg_prefix()}&aid=4288&wid=002&ct=~x%22#{ref}#{tlg_postfix}"
     when 'logeion' then "http://logeion.uchicago.edu/#{entry}"
+    when 'morpho' then "http://logeion.uchicago.edu/morpho/#{entry}"
     when 'wiktionary' then "https://en.wiktionary.org/wiki/#{entry}"
     when 'morph' then "http://www.perseus.tufts.edu/hopper/morph?l=#{entry}&la=greek"
     when 'wip' then "http://www.aristarchus.unige.net/Wordsinprogress/it-it/Database/View/#{ref}"
@@ -119,6 +120,10 @@ perform_search = (value) ->
     $('#search_status').empty().append(
       $('<p>').text("Searching for: #{value} - ").append(
         generate_link('logeion',value,value).text("search for #{value} in Logeion")
+      ).append(
+        $('<span>').text(' or ')
+      ).append(
+        generate_link('morpho',value,value).text("Μορφώ")
       ).append(
         $('<span>').text(', ')
       ).append(
