@@ -31,7 +31,7 @@ generate_link = (dictionary, entry, ref) ->
   url = switch dictionary
     when 'lsj' then "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0057:entry=#{ref}"
     when 'harpokration' then "https://dcthree.github.io/harpokration/#urn_cts_greekLit_tlg1389_tlg001_dc3_#{encodeURIComponent(ref)}"
-    when 'photios' then "https://dcthree.github.io/photios/entry#urn_cts_greekLit_tlg4040_lexicon_dc3_#{encodeURIComponent(ref)}"
+    when 'photios' then "https://dcthree.github.io/photios/#urn_cts_greekLit_tlg4040_lexicon_dc3_#{encodeURIComponent(ref)}"
     when 'suda' then "http://www.stoa.org/sol-entries/#{ref}"
     when 'etymologicum-gudianum'
       switch ref.split('%22y%22')[0]
