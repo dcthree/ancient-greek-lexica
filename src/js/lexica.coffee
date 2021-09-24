@@ -116,6 +116,7 @@ search_dictionaries_for_value = (value) ->
 
 perform_search = (value) ->
   console.log 'perform_search:', value
+  $.xhrPool.abortAll()
   requestAnimationFrame ->
     $('#search_status').empty().append(
       $('<p>').text("Searching for: #{value} - ").append(
@@ -140,10 +141,14 @@ perform_search = (value) ->
   else
     console.log('perform_search called with uninitialized headwords!')
 
-search_for = (value) ->
-  console.log 'search_for:', value
+update_hash_value = (value) ->
+  console.log 'update_hash_value:', value
   $.xhrPool.abortAll()
   window.location = "##{value}"
+
+search_for = (value) ->
+  console.log 'search_for:', value
+  perform_search(value)
 
 search_for_hash = ->
   hash_parameter = decodeURI(window.location.hash.substr(1))
@@ -193,10 +198,14 @@ $(document).ready ->
     select: (event, ui) ->
       # console.log(ui)
       if window.location.hash != ui.item.value
-        search_for(ui.item.value)
+        update_hash_value(ui.item.value)
     search: (event, ui) ->
       if window.location.hash != $('#search').val()
         search_for($('#search').val())
+  
+  $('#search').blur ->
+    console.log('#search.blur')
+    update_hash_value($('#search').val())
 
   $.ajaxSetup
     beforeSend: (jqXHR) -> $.xhrPool.push(jqXHR)
